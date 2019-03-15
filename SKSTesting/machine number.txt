@@ -1,0 +1,9 @@
+ID: 12 digits     >> eg. a real camera under SKS: ID-1C21D1C20086
+	MNO: 7 digits
+	sensor loop: 2 digits
+
+I D - 1 C _ _ _ _ _ _ X X _ _      >> XX can be random number or may default to 00
+           ⤷MNO(hex.)     ⤷sensor loop(dec.)
+
+ex. a camera under MNO: 2216386 (hex-> 21D1C2) can be, for example, I D - 1 C 2 1 D 1 C 2 0 0 8 6, with sensor loop = 86
+    a camera under MNO: 2216384 (hex-> 21D1C0) can be, for example, I D - 1 C 2 1 D 1 C 0 0 C 7 7, with sensor loop = 77

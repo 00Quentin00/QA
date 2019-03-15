@@ -1,0 +1,61 @@
+Test case: SKS Extension
+Test plan date: 2018.03.15
+Test Date: 2018.03.15-2018.03.29
+
+Setting:
+
+   RC System
+   ==================================================
+   SI:
+     * master  admin
+     * regular admin
+     * service engineer
+
+   Customers:
+     * master admin
+     * regular admin
+       power user
+       user
+
+   * Have permission to setting page
+
+
+1. Implementation
+	* enable SKS sxtension for customer >> check customer in mongodb 
+	* Add machine no. to location >> check location in mongodb & sks_extensions in SQL
+
+2. Distortion
+	* Modify location name >> check sks_extensions in SQL
+	* Delete location >> check sks_extensions in SQL
+	* Delete customer >> check sks_extensions in SQL
+
+
+SKSserver:
+  
+  Running the server:
+    To start the server on AWS, please use super user.
+    <sudo python3 SKSserver.py&>
+
+  url: http://52.196.55.218:80
+
+  Log files:
+    Path: /home/ubuntu/SKSextension
+    ##Status of each machine are stored in separate log files with machine number as the file name.
+
+
+Test cases:
+  1. Events:
+    -Arm:               switching on/off on Aqua portal, Android, and IOS (sent within 30sec)
+    -Disarm:            switching on/off on Aqua portal, Android, and IOS (sent within 30sec)
+    -Lost Connection:   plug out camera                                   (sent within 45sec)
+    -Join(online):      plug in camera                                    (sent within 45sec)
+    -Someone is here:   trigger cv event following scheduled traffic      (sent within 30sec)
+    -Scaling the wall:  trigger cv event following scheduled traffic      (sent within 30sec)
+    -Error:             set response code to 500 manually                 (sent after 5 retries)
+
+  2.Error and retry:
+    Retry 5 times with 3 sec interval, the 6th data's eventcode will changed ER sharing using original sno.
+
+  3. Serial number:
+    -Strictly increasing in a day for all kind of events.
+    -The first data SKS recieved, it's "sno" = "1"
