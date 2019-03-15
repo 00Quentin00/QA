@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-[{"Host": "127.0.0.1:8081"}, {"Accept-Encoding": "identity"}, {"Content-Length": "155"}, {"Content-type": "application/json"}, {"Accept": "application/json"}]
-=======
-[{"Host": "qae876.umbocv.com:6001"}, {"User-Agent": "go-resty/1.11.0 (https://github.com/go-resty/resty)"}, {"Content-Length": "141"}, {"Content-Type": "application/json; charset=utf-8"}, {"Accept-Encoding": "gzip"}]
->>>>>>> 19f2cb33afbe288a68d84239290b74d3e8f09a7e
+[{"Host": "127.0.0.1:6000"}, {"Accept-Encoding": "identity"}, {"Content-Length": "155"}, {"Accept": "application/json"}, {"Content-type": "application/json"}]

@@ -36,6 +36,7 @@ interval4LC.sort()
 
 def SKSWebAPI(value): # AR, DI, JO, LC, AL, ER
 	jsonDict = {}
+	print("SKSWebAPI")
 	for index in range(0,len(APIKey)):
 		jsonDict[APIKey[index]] = value[index]
 		if APIKey[index] == 'scode':
@@ -114,6 +115,7 @@ def post():
 	lock.release()	
 	i = 1
 	while i >= 0:
+		print(i)
 		try:
 			data, configChar = SKSWebAPI(APIData)
 			json_data = json.dumps(OrderedDict(data))
@@ -121,11 +123,13 @@ def post():
 							, "Accept": "application/json"}
 							
 			# httpClient = httplib.HTTPConnection("54.187.40.215", 6000, timeout=30)
-			httpClient = httplib.HTTPConnection("54.187.40.215", 6000, timeout=30)
+			httpClient = httplib.HTTPConnection("127.0.0.1", 6000, timeout=30)
 			httpClient.request("POST", "/", json_data, headers)
 			response = httpClient.getresponse()
 			print("{1}{3}{2}{3}{3}{3}{0}".format("="*154, configChar, json_data, "\n"))
+			print("haha")
 		except Exception as e:
+			print(e)
 			if str(e).find("200") == -1:
 				log = "{3}{1}{3}{2}{3}{3}{0}".format("="*154, configChar, json_data, "\n")
 				elog = colored("{}".format(e), "cyan")
@@ -167,25 +171,12 @@ if __name__ == '__main__':
 	data = {}
 	jsonDict = {}
 	APIKey = ['sno','sigtime','catg','mno','uid','power','lan','scode']
-	g1 = threading.Thread(target=generator, args=("3", "1234567", "ID-1C1234567001", "A", "1", "SH", interval1SH))
-	g2 = threading.Thread(target=generator, args=("3", "1234567", "ID-1C123456700A", "A", "1", "SH", interval2SH))
-	g3 = threading.Thread(target=generator, args=("3", "3030303", "ID-1C3030303002", "A", "1", "SH", interval3SH))
-	g4 = threading.Thread(target=generator, args=("3", "3030303", "ID-1C303030300A", "A", "1", "SH", interval4SH))
+	g1 = threading.Thread(target=generator, args=("3", "1312412", "ID-1C21D1C2007A", "A", "1", "SH", interval1SH))
 
-	g5 = threading.Thread(target=generator, args=("3", "1234567", "ID-1C1234567001", "A", "1", "LC", interval1LC))
-	g6 = threading.Thread(target=generator, args=("3", "1234567", "ID-1C123456700A", "A", "1", "LC", interval2LC))
-	g7 = threading.Thread(target=generator, args=("3", "3030303", "ID-1C3030303002", "A", "1", "LC", interval3LC))
-	g8 = threading.Thread(target=generator, args=("3", "3030303", "ID-1C303030300A", "A", "1", "LC", interval4LC))
-
+	g5 = threading.Thread(target=generator, args=("3", "1312412", "ID-1C21D1C2007A", "A", "1", "LC", interval1LC))
 	g1.start()
-	g2.start()
-	g3.start()
-	g4.start()
 
 	g5.start()
-	g6.start()
-	g7.start()
-	g8.start()
 
 	while True:
 		if len(APIPipeline) > 5:
