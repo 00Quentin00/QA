@@ -23,7 +23,7 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
 			length = int(self.headers['content-length'])
 			content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
 			post_data = self.rfile.read(content_length) # <--- Gets the data itself
-			print(post_data)
+			self.path_logic(post_data)
 		else:
 			self.send_error(415, "Only json data is supported.")
 			return
@@ -70,13 +70,15 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
 		with open('header.json','w') as f:
 			f.write(encodedjson)
 		self.wfile.write(bytes(encodedjson, 'utf8'))
+	def path_logic(self, post_data):
+		print("send to machine " + str(json.loads(post_data.decode('utf-8'))["mno"][0:3]))
 
 if __name__ == '__main__':
 	print('starting the server...')
 
 	# server_address = ('127.0.0.1', 8081) #localhost:8081
 	# URL：http://52.196.55.218:80
-	server_address = ('0.0.0.0', 6000)
+	server_address = ('127.0.0.1', 8080)
 	httpd = HTTPServer(server_address, testHTTPServer_RequestHandler)
 	print('runnig the server...')
 	lock = threading.Lock()

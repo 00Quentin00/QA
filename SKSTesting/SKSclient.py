@@ -123,7 +123,7 @@ def post():
 							, "Accept": "application/json"}
 							
 			# httpClient = httplib.HTTPConnection("54.187.40.215", 6000, timeout=30)
-			httpClient = httplib.HTTPConnection("127.0.0.1", 6000, timeout=30)
+			httpClient = httplib.HTTPConnection("127.0.0.1", 8080, timeout=30)
 			httpClient.request("POST", "/", json_data, headers)
 			response = httpClient.getresponse()
 			print("{1}{3}{2}{3}{3}{3}{0}".format("="*154, configChar, json_data, "\n"))
